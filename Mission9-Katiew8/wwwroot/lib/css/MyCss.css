@@ -1,0 +1,14 @@
+﻿body {
+
+}
+
+.yellow{
+    background-color: tan;
+}
+
+.red{
+    background-color: gold;
+    outline:gold;
+    color:black;
+    font-weight: bold;
+}
