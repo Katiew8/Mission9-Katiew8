@@ -18,20 +18,23 @@ namespace Mission9_Katiew8.Controllers
             repo = temp;
         }
 
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookCategory, int pageNum = 1)
         {
             int pageSize = 10;
 
             var x = new ProjectViewModel
             {
                 Books = repo.Bookz
+                .Where(p => p.Category == bookCategory || bookCategory == null)
                 .OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumProjects = repo.Bookz.Count(),
+                    TotalNumProjects = (bookCategory == null
+                        ? repo.Bookz.Count()
+                        : repo.Bookz.Where(x => x.Category == bookCategory).Count()),
                     ProjectsPerPage = pageSize,
                     CurrentPage = pageNum
                 }
