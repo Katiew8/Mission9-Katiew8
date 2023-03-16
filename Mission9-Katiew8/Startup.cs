@@ -36,11 +36,17 @@ namespace Mission9_Katiew8
 
             services.AddScoped<Repository, EFRepository>();
 
+            services.AddScoped<PurchaseRepository, EfPurchaseRepository>();
+
             services.AddRazorPages();
 
             services.AddDistributedMemoryCache();
 
             services.AddSession();
+
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
 

@@ -21,5 +21,7 @@ namespace Mission9_Katiew8.Models
 
         public virtual DbSet<Books> Books { get; set; }
 
+        public DbSet<Purchase> Purchase { get; set; }
+
     }
 }
